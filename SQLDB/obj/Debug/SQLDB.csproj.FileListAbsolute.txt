@@ -1,0 +1,13 @@
+C:\Users\Satellite\source\repos\SQLDB\SQLDB\bin\Debug\Database1.mdf
+C:\Users\Satellite\source\repos\SQLDB\SQLDB\bin\Debug\Database1_log.ldf
+C:\Users\Satellite\source\repos\SQLDB\SQLDB\bin\Debug\SQLDB.exe.config
+C:\Users\Satellite\source\repos\SQLDB\SQLDB\bin\Debug\SQLDB.exe
+C:\Users\Satellite\source\repos\SQLDB\SQLDB\bin\Debug\SQLDB.pdb
+C:\Users\Satellite\source\repos\SQLDB\SQLDB\obj\Debug\SQLDB.csproj.AssemblyReference.cache
+C:\Users\Satellite\source\repos\SQLDB\SQLDB\obj\Debug\SQLDB.csproj.SuggestedBindingRedirects.cache
+C:\Users\Satellite\source\repos\SQLDB\SQLDB\obj\Debug\SQLDB.Form1.resources
+C:\Users\Satellite\source\repos\SQLDB\SQLDB\obj\Debug\SQLDB.Properties.Resources.resources
+C:\Users\Satellite\source\repos\SQLDB\SQLDB\obj\Debug\SQLDB.csproj.GenerateResource.cache
+C:\Users\Satellite\source\repos\SQLDB\SQLDB\obj\Debug\SQLDB.csproj.CoreCompileInputs.cache
+C:\Users\Satellite\source\repos\SQLDB\SQLDB\obj\Debug\SQLDB.exe
+C:\Users\Satellite\source\repos\SQLDB\SQLDB\obj\Debug\SQLDB.pdb
