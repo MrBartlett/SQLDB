@@ -16,7 +16,7 @@ namespace SQLDB
 {
     public partial class Form1 : Form
     {
-        private static string sqlConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Satellite\\source\\repos\\SQLDB\\SQLDB\\Database1.mdf;Integrated Security = True";
+        private static string sqlConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\hayde\source\repos\SQLDB\SQLDB\Database1.mdf;Integrated Security=True";
         private SqlConnection conn = new SqlConnection(sqlConnectionString);
         public Form1()
         {
@@ -81,14 +81,19 @@ namespace SQLDB
 
             }
             conn.Close();
+
+            
         }
 
 
         //Read from DB
+       
         private void button1_Click(object sender, EventArgs e)
         {
+            string yeet = "bob";
+            string yoot = "smith";
 
-            string searchQuery = "SELECT * FROM [enrolments] WHERE fname = 'John' AND sname = 'Smith'";
+            string searchQuery = "SELECT * FROM [enrolments] WHERE fname = '" + yeet + "' AND sname = '" + yoot + "'";
 
             conn.Open();
 
