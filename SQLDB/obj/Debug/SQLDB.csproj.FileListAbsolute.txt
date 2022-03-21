@@ -11,8 +11,6 @@ C:\Users\Satellite\source\repos\SQLDB\SQLDB\obj\Debug\SQLDB.csproj.GenerateResou
 C:\Users\Satellite\source\repos\SQLDB\SQLDB\obj\Debug\SQLDB.csproj.CoreCompileInputs.cache
 C:\Users\Satellite\source\repos\SQLDB\SQLDB\obj\Debug\SQLDB.exe
 C:\Users\Satellite\source\repos\SQLDB\SQLDB\obj\Debug\SQLDB.pdb
-C:\Users\hayde\source\repos\SQLDB\SQLDB\bin\Debug\Database1.mdf
-C:\Users\hayde\source\repos\SQLDB\SQLDB\bin\Debug\Database1_log.ldf
 C:\Users\hayde\source\repos\SQLDB\SQLDB\bin\Debug\SQLDB.exe.config
 C:\Users\hayde\source\repos\SQLDB\SQLDB\bin\Debug\SQLDB.exe
 C:\Users\hayde\source\repos\SQLDB\SQLDB\bin\Debug\SQLDB.pdb
@@ -24,3 +22,5 @@ C:\Users\hayde\source\repos\SQLDB\SQLDB\obj\Debug\SQLDB.csproj.GenerateResource.
 C:\Users\hayde\source\repos\SQLDB\SQLDB\obj\Debug\SQLDB.csproj.CoreCompileInputs.cache
 C:\Users\hayde\source\repos\SQLDB\SQLDB\obj\Debug\SQLDB.exe
 C:\Users\hayde\source\repos\SQLDB\SQLDB\obj\Debug\SQLDB.pdb
+C:\Users\hayde\source\repos\SQLDB\SQLDB\bin\Debug\DAL\Database1.mdf
+C:\Users\hayde\source\repos\SQLDB\SQLDB\bin\Debug\DAL\Database1_log.ldf
