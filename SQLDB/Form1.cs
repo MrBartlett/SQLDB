@@ -16,8 +16,6 @@ namespace SQLDB
 {
     public partial class Form1 : Form
     {
-        private static string sqlConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\hayde\source\repos\SQLDB\SQLDB\Database1.mdf;Integrated Security=True";
-        private SqlConnection conn = new SqlConnection(sqlConnectionString);
         public Form1()
         {
             InitializeComponent();
@@ -31,19 +29,13 @@ namespace SQLDB
             string sname = txtinput2.Text;
             int age = int.Parse(txtinput3.Text);
 
+            DBConn dBConn = new DBConn();
 
-            string addtotable = "INSERT INTO [enrolments] (fname, sname, age) " +
-                "VALUES ('" + fname + "','" + sname + "','" + age + "');";
-
-
-            conn.Open();
-
-            using (SqlCommand command = new SqlCommand(addtotable, conn))
-            { 
-                command.ExecuteNonQuery();
-            }
-            conn.Close();
+            dBConn.writeToDB(fname, sname, age);
         }
+
+
+
 
         private void WritetoDB(string input)
         {
@@ -61,26 +53,25 @@ namespace SQLDB
 
 
 
-        //Select all from Textbox
+        //Select all from DB
         private void button2_Click(object sender, EventArgs e)
         {
-            string searchQuery = "SELECT * FROM [enrolments]";
 
-            conn.Open();
+            List<Model> models = new List<Model>();
+            DBConn dBConn = new DBConn();
 
-            using (SqlDataReader reader = new SqlCommand(searchQuery, conn).ExecuteReader())
+            models = dBConn.selectALL();
+
+            foreach (Model model in models)
             {
-                while (reader.Read())
-                {
-                    textBox1.AppendText(reader["fname"].ToString() + " "
-                        + reader["sname"].ToString() + " "
-                        + int.Parse(reader["age"].ToString()) + " "
-                        + reader["ID"].ToString()
-                        + System.Environment.NewLine);
-                }
-
+                textBox1.AppendText(
+                    model.fName + " " +
+                    model.sName + " " +
+                    model.age.ToString() +
+                    System.Environment.NewLine
+                    );
             }
-            conn.Close();
+
 
             
         }
@@ -90,23 +81,19 @@ namespace SQLDB
        
         private void button1_Click(object sender, EventArgs e)
         {
-            string yeet = "bob";
-            string yoot = "smith";
+            string fname = txtInput.Text;
+            string sname = txtinput2.Text;
 
-            string searchQuery = "SELECT * FROM [enrolments] WHERE fname = '" + yeet + "' AND sname = '" + yoot + "'";
+            List<string> names = new List<string>();
+            DBConn dbConn = new DBConn();
 
-            conn.Open();
+            names = dbConn.SelectWhere(fname, sname);
 
-            using (SqlDataReader reader = new SqlCommand(searchQuery, conn).ExecuteReader())
+            foreach(string name in names)
             {
-                while (reader.Read())
-                {
-                    textBox1.AppendText(reader["fname"].ToString() + System.Environment.NewLine);
-                }
-
+                textBox1.AppendText(name + System.Environment.NewLine);
             }
-            conn.Close();
-
+           
         }
     }
 }
