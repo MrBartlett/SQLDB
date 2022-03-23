@@ -110,5 +110,24 @@ namespace SQLDB
                 txtOutput.AppendText(name + System.Environment.NewLine);
             }
         }
+
+
+        //select all
+        private void btnSelectAll_Click(object sender, EventArgs e)
+        {
+            BLogic logik = new BLogic();
+            List<Model> models = logik.SelectAllBL();
+
+            // VS generated this code for me and I didnt have the heart to change it to
+            // A foreach, but it works anyway so win
+            // You could also use a foreach here
+            for (int i = 0; i < models.Count; i++)
+            {
+                Model model = models[i];
+                txtOutput.AppendText(model.fName + " " 
+                    + model.sName + " " 
+                    + model.age + System.Environment.NewLine);
+            }
+        }
     }
 }

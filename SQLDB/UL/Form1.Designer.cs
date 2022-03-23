@@ -105,6 +105,7 @@
             this.btnSelectAll.TabIndex = 6;
             this.btnSelectAll.Text = "Select All";
             this.btnSelectAll.UseVisualStyleBackColor = true;
+            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
             // 
             // label1
             // 
