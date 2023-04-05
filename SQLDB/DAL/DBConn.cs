@@ -11,7 +11,8 @@ namespace SQLDB
 {
     internal class DBConn
     {
-        private static string sqlConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\hayde\source\repos\SQLDB\SQLDB\DAL\Database1.mdf;Integrated Security=True";
+        private static string sqlConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Core\Documents\GitHub\SQLDB\SQLDB\DAL\Database1.mdf;Integrated Security=True";
+        //private static string sqlConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\hayde\source\repos\SQLDB\SQLDB\DAL\Database1.mdf;Integrated Security=True";
         private SqlConnection conn = new SqlConnection(sqlConnectionString);
 
 
@@ -85,7 +86,29 @@ namespace SQLDB
 
         }
 
+        public string SelectJoined(string fname, string sname) 
+        {
+            string searchQuery = "SELECT * FROM [tblenrolments] INNER JOIN [tblclasses] ON [tblenrolments].[classID] = [tblclasses].[classID] WHERE [tblenrolments].fname = '" + fname + "' AND [tblenrolments].sname = '" + sname + "'";
 
+            string data = "";
+
+            conn.Open();
+
+            using (SqlDataReader reader = new SqlCommand(searchQuery, conn).ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    data += reader["fname"].ToString() + " ";
+                    data += reader["cName"].ToString() + " " + System.Environment.NewLine;
+                }
+
+            }
+            conn.Close();
+
+            return data;
+
+
+        }
 
 
 

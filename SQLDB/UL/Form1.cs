@@ -96,8 +96,8 @@ namespace SQLDB
         //Read from DB where fname and sname = x
        private void btnSearch_Click(object sender, EventArgs e)
         {
-            string fname = txtInput.Text;
-            string sname = txtinput2.Text;
+            string fname = txbFnameS.Text;
+            string sname = txbSNameS.Text;
 
             List<string> names = new List<string>();
 
@@ -121,13 +121,19 @@ namespace SQLDB
             // VS generated this code for me and I didnt have the heart to change it to
             // A foreach, but it works anyway so win
             // You could also use a foreach here
-            for (int i = 0; i < models.Count; i++)
-            {
-                Model model = models[i];
+            foreach(Model model in models)
+            { 
                 txtOutput.AppendText(model.fName + " " 
                     + model.sName + " " 
                     + model.age + System.Environment.NewLine);
             }
+        }
+
+        private void btnSearchJoined_Click(object sender, EventArgs e)
+        {
+            DBConn conn = new DBConn();
+            string data = conn.SelectJoined(txbFnameS.Text, txbSNameS.Text);
+            txtOutput.Text = data;
         }
     }
 }
