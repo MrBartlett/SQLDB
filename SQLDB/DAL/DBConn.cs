@@ -11,7 +11,8 @@ namespace SQLDB
 {
     internal class DBConn
     {
-        private static string sqlConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Core\Documents\GitHub\SQLDB\SQLDB\DAL\Database1.mdf;Integrated Security=True";
+        //Nonrelative connection string
+        private static string sqlConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + "DAL\\Database1.mdf" + ";Integrated Security=True";
         //private static string sqlConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\hayde\source\repos\SQLDB\SQLDB\DAL\Database1.mdf;Integrated Security=True";
         private SqlConnection conn = new SqlConnection(sqlConnectionString);
 
