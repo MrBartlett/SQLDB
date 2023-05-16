@@ -3,24 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using System.Data.SqlClient;
-using System.Data;
 
 namespace SQLDB
 {
     internal class DBConn
     {
-        private static string sqlConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\hayde\source\repos\SQLDB\SQLDB\DAL\Database1.mdf;Integrated Security=True";
+
+        private static string sqlConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\hayde\\source\\repos\\SQLDB\\SQLDB\\DAL\\Database1.mdf;Integrated Security=True";
         private SqlConnection conn = new SqlConnection(sqlConnectionString);
 
 
+        //Writing to a Database
         public bool writeToDB(string fname, string sname, int age)
         {
             try
             {
+                Model model = new Model();
                 string addtotable = "INSERT INTO [tblenrolments] (fname, sname, age) " + "VALUES ('" + fname + "','" + sname + "','" + age + "');";
 
+                // INSERT INTO [tblenrolments] (fname, sname, age) VALUES ('Ben','Johnson','35');
 
                 conn.Open();
 
@@ -29,7 +31,9 @@ namespace SQLDB
                     command.ExecuteNonQuery();
                 }
                 conn.Close();
-                return true;
+
+            return true;
+
             }
             catch
             {
@@ -37,6 +41,8 @@ namespace SQLDB
             }
         }
 
+
+        // selecting all from database
         public List<Model> selectALL()
         {
             List<Model> list = new List<Model>();
@@ -52,7 +58,7 @@ namespace SQLDB
 
                     model.fName = reader["fname"].ToString();
                     model.sName = reader["sname"].ToString();
-                    model.age = int.Parse(reader["age"].ToString());
+                    model.age = int.Parse(reader["age"].ToString()); 
 
                     list.Add(model);
                 }
@@ -63,6 +69,8 @@ namespace SQLDB
             
         }
 
+
+        // Select where from database
         public List<string> SelectWhere(string fname, string sname)
         {
             string searchQuery = "SELECT * FROM [tblenrolments] WHERE fname = '" + fname + "' AND sname = '" + sname + "'";

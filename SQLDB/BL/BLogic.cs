@@ -24,11 +24,15 @@ namespace SQLDB
 
             fname = fname.ToLower(); // now fname is lowercase
 
-            sname = sname.ToLower(); // now sname is lowercase uwu so fancy :3
+            sname = sname.ToLower(); // now sname is lowercase bruh so fancy dab
 
             // Might we need to do anything to our the return from our db?
             DBConn dbConn = new DBConn();
             rturn = dbConn.SelectWhere(fname, sname);
+
+            //Now we need to reformat our strings to look like we understand grammer
+
+
 
             return rturn;
         }

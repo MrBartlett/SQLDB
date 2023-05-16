@@ -105,6 +105,8 @@ namespace SQLDB
 
             names = bl.Selectwhr(fname, sname);
 
+     
+
             foreach (string name in names)
             {
                 txtOutput.AppendText(name + System.Environment.NewLine);
