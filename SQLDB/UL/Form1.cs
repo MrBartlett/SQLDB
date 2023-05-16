@@ -134,6 +134,7 @@ namespace SQLDB
             DBConn conn = new DBConn();
             string data = conn.SelectJoined(txbFnameS.Text, txbSNameS.Text);
             txtOutput.Text = data;
+
         }
     }
 }
