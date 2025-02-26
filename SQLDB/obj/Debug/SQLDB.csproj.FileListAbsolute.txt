@@ -15,7 +15,6 @@ C:\Users\hayde\source\repos\SQLDB\SQLDB\bin\Debug\SQLDB.exe.config
 C:\Users\hayde\source\repos\SQLDB\SQLDB\bin\Debug\SQLDB.exe
 C:\Users\hayde\source\repos\SQLDB\SQLDB\bin\Debug\SQLDB.pdb
 C:\Users\hayde\source\repos\SQLDB\SQLDB\obj\Debug\SQLDB.csproj.AssemblyReference.cache
-C:\Users\hayde\source\repos\SQLDB\SQLDB\obj\Debug\SQLDB.csproj.SuggestedBindingRedirects.cache
 C:\Users\hayde\source\repos\SQLDB\SQLDB\obj\Debug\SQLDB.Form1.resources
 C:\Users\hayde\source\repos\SQLDB\SQLDB\obj\Debug\SQLDB.Properties.Resources.resources
 C:\Users\hayde\source\repos\SQLDB\SQLDB\obj\Debug\SQLDB.csproj.GenerateResource.cache
@@ -27,3 +26,12 @@ C:\Users\hayde\source\repos\SQLDB\SQLDB\bin\Debug\DAL\Database1_log.ldf
 C:\Users\hayde\source\repos\SQLDB\SQLDB\bin\Debug\System.Data.SqlClient.dll
 C:\Users\hayde\source\repos\SQLDB\SQLDB\bin\Debug\System.Data.SqlClient.xml
 C:\Users\hayde\source\repos\SQLDB\SQLDB\obj\Debug\SQLDB.csproj.CopyComplete
+C:\Users\hayde\source\repos\SQLDB\SQLDB\bin\Debug\runtimes\win-x86\native\WebView2Loader.dll
+C:\Users\hayde\source\repos\SQLDB\SQLDB\bin\Debug\runtimes\win-x64\native\WebView2Loader.dll
+C:\Users\hayde\source\repos\SQLDB\SQLDB\bin\Debug\runtimes\win-arm64\native\WebView2Loader.dll
+C:\Users\hayde\source\repos\SQLDB\SQLDB\bin\Debug\Microsoft.Web.WebView2.Core.dll
+C:\Users\hayde\source\repos\SQLDB\SQLDB\bin\Debug\Microsoft.Web.WebView2.WinForms.dll
+C:\Users\hayde\source\repos\SQLDB\SQLDB\bin\Debug\Microsoft.Web.WebView2.Wpf.dll
+C:\Users\hayde\source\repos\SQLDB\SQLDB\bin\Debug\Microsoft.Web.WebView2.Core.xml
+C:\Users\hayde\source\repos\SQLDB\SQLDB\bin\Debug\Microsoft.Web.WebView2.WinForms.xml
+C:\Users\hayde\source\repos\SQLDB\SQLDB\bin\Debug\Microsoft.Web.WebView2.Wpf.xml

@@ -20,11 +20,11 @@ namespace SQLDB
 
         }
 
-        public Model(string fName, int age, string sName)
-        {
-            this.fName = fName;
-            this.sName = sName;
-            this.age = age;
-        }
+        //public Model(string fName, int age, string sName)
+        //{
+        //    this.fName = fName;
+        //    this.sName = sName;
+        //    this.age = age;
+        //}
     }
 }

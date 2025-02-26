@@ -4,23 +4,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Xml.Linq;
+using System.IO;
+using System.Reflection;
 
 namespace SQLDB
 {
     internal class DBConn
     {
 
-        private static string sqlConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\hayde\\source\\repos\\SQLDB\\SQLDB\\DAL\\Database1.mdf;Integrated Security=True";
+        private static string sqlConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" +
+            Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) +
+            "\\DAL\\Database1.mdf" + ";Integrated Security=True";
+
         private SqlConnection conn = new SqlConnection(sqlConnectionString);
 
 
         //Writing to a Database
-        public bool writeToDB(string fname, string sname, int age)
+        public bool writeToDB(Model user)
         {
+
             try
             {
-                Model model = new Model();
-                string addtotable = "INSERT INTO [tblenrolments] (fname, sname, age) " + "VALUES ('" + fname + "','" + sname + "','" + age + "');";
+                string addtotable = "INSERT INTO [tblenrolments] (fname, sname, age) VALUES " +
+                    "('" + user.fName + "','" + user.sName + "','" + user.age + "');";
 
                 // INSERT INTO [tblenrolments] (fname, sname, age) VALUES ('Ben','Johnson','35');
 
@@ -32,7 +40,56 @@ namespace SQLDB
                 }
                 conn.Close();
 
-            return true;
+                return true;
+
+            }
+            catch
+            {
+               return false;
+            }
+        }
+
+        public bool DeleteWhere(string name)
+        {
+            try
+            {
+
+                string addtotable = "DELETE FROM tblenrolments WHERE fname='" + name.ToLower() + "';";
+
+                conn.Open();
+
+                using (SqlCommand command = new SqlCommand(addtotable, conn))
+                {
+                    command.ExecuteNonQuery();
+                }
+                conn.Close();
+
+                return true;
+
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        // Delete all
+        public bool DeleteAll()
+        {
+            try
+            {
+                
+                string addtotable = "DELETE FROM tblenrolments";
+
+                conn.Open();
+
+                using (SqlCommand command = new SqlCommand(addtotable, conn))
+                {
+                    command.ExecuteNonQuery();
+                }
+                conn.Close();
+
+                return true;
 
             }
             catch
@@ -69,6 +126,31 @@ namespace SQLDB
             
         }
 
+        public bool Update(Model user)
+        {
+            try
+            {
+                string updateQuery = "UPDATE [tblenrolments] SET age = '" + user.age + "' " +
+                                     "WHERE fname = '" + user.fName + "' AND sname = '" + user.sName + "';";
+
+                conn.Open();
+
+                using (SqlCommand command = new SqlCommand(updateQuery, conn))
+                {
+                    command.ExecuteNonQuery();
+                }
+                conn.Close();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+
 
         // Select where from database
         public List<string> SelectWhere(string fname, string sname)
@@ -92,12 +174,9 @@ namespace SQLDB
             return list;
 
         }
-
-
-
-
-
     }
+
+
 
 
 }

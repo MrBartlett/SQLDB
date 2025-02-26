@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 //you need dis
 using System.Data.SqlClient;
 
@@ -19,7 +18,6 @@ namespace SQLDB
         public Form1()
         {
             InitializeComponent();
-
             
         }
 
@@ -27,46 +25,51 @@ namespace SQLDB
         // just providing a layer of protection for lower layers of the application
         private void btnInput_Click(object sender, EventArgs e)
         {
-            string fname;
-            string sname;
-            int age;
+            Model user = new Model();
             bool flag;
-
-            // checks if any of the textboxes are empty (protects our logic from nulls)
-            if (String.IsNullOrEmpty(txtInput.Text) || String.IsNullOrEmpty(txtinput2.Text) || String.IsNullOrEmpty(txtinput3.Text))
+            try
             {
-                flag = false;
-            }
-            else
-            {
-                fname = txtInput.Text;
-                sname = txtinput2.Text;
-                age = int.Parse(txtinput3.Text);
+                // checks if any of the textboxes are empty (protects our logic from nulls)
+                if (String.IsNullOrEmpty(txtInput.Text) || String.IsNullOrEmpty(txtinput2.Text) || String.IsNullOrEmpty(txtinput3.Text))
+                {
+                    flag = false;
+                }
+                else
+                {
+                    user.fName = txtInput.Text;
+                    user.sName = txtinput2.Text;
+                    user.age = int.Parse(txtinput3.Text);
 
-                // calls appropriate BL method to kick off the process of 
-                // writing to a db, you'll note that the method returns a bool
-                // this bool is a flag and indicates the success of the write
-                BLogic logik = new BLogic();
-                flag = logik.WritetoDBBL(fname, sname, age);
-
-            }
-
-            // you know what a flag is right?
-            // uses the flag to provide output to the user
-            if(flag == true)
-            {              
+                    // calls appropriate BL method to kick off the process of 
+                    // writing to a db, you'll note that the method returns a bool
+                    // this bool is a flag and indicates the success of the write
+                    BLogic logik = new BLogic();
+                    flag = logik.WritetoDBBL(user);
+                }
+                // you know what a flag is right?
+                // uses the flag to provide output to the user
+                if (flag == true)
+                {
                     pbSuccess.Visible = true;
-                pbFail.Visible = false;
-                txtOutput.Text = "Successfully written to DB";
-            }
-            else
-            {
+                    pbFail.Visible = false;
+                    txtOutput.Text = "Successfully written to DB";
+                }
+                else
+                {
                     pbSuccess.Visible = false;
-                    pbFail.Visible = true ;
-                txtOutput.Text = "Nothing written to DB";
-                
+                    pbFail.Visible = true;
+                    txtOutput.Text = "Nothing written to DB";
 
-            }            
+
+                }
+            }
+            catch
+            {
+                pbSuccess.Visible = false;
+                pbFail.Visible = true;
+                txtOutput.Text = "Nothing written to DB";
+            }
+                        
         }
 
         //Select all from DB
@@ -75,18 +78,32 @@ namespace SQLDB
 
             List<Model> models = new List<Model>();
             BLogic logik = new BLogic();
-
+           
             models = logik.SelectAllBL();
 
-            foreach (Model model in models)
+            if(models.Count > 0)
             {
-                txtOutput.AppendText(
-                    model.fName + " " +
-                    model.sName + " " +
-                    model.age.ToString() +
-                    System.Environment.NewLine
-                    );
+                foreach (Model model in models)
+                {
+                    txtOutput.AppendText(
+                        model.fName + " " +
+                        model.sName + " " +
+                        model.age.ToString() +
+                        System.Environment.NewLine
+                        );
+
+                    
+
+                }
+                pbSuccess.Visible = true;
+                pbFail.Visible = false;
             }
+            else
+            {
+                pbSuccess.Visible = false;
+                pbFail.Visible = true;
+            }
+            
 
 
             
@@ -96,8 +113,8 @@ namespace SQLDB
         //Read from DB where fname and sname = x
        private void btnSearch_Click(object sender, EventArgs e)
         {
-            string fname = txtInput.Text;
-            string sname = txtinput2.Text;
+            string fname = txbFnameS.Text;
+            string sname = txbSNameS.Text;
 
             List<string> names = new List<string>();
 
@@ -106,11 +123,21 @@ namespace SQLDB
             names = bl.Selectwhr(fname, sname);
 
      
-
-            foreach (string name in names)
+            if(names.Count > 0)
             {
-                txtOutput.AppendText(name + System.Environment.NewLine);
+                foreach (string name in names)
+                {
+                    txtOutput.AppendText(name + System.Environment.NewLine);
+                }
+                pbSuccess.Visible = true;
+                pbFail.Visible = false;
             }
+            else
+            {
+                pbSuccess.Visible = false;
+                pbFail.Visible = true;
+            }
+            
         }
 
 
@@ -123,13 +150,68 @@ namespace SQLDB
             // VS generated this code for me and I didnt have the heart to change it to
             // A foreach, but it works anyway so win
             // You could also use a foreach here
-            for (int i = 0; i < models.Count; i++)
+            if(models.Count > 0)
             {
-                Model model = models[i];
-                txtOutput.AppendText(model.fName + " " 
-                    + model.sName + " " 
-                    + model.age + System.Environment.NewLine);
+                for (int i = 0; i < models.Count; i++)
+                {
+                    Model model = models[i];
+                    txtOutput.AppendText(model.fName + " "
+                        + model.sName + " "
+                        + model.age + System.Environment.NewLine);
+                }
+                pbSuccess.Visible = true;
+                pbFail.Visible = false;
             }
+            else
+            {
+                pbSuccess.Visible = false;
+                pbFail.Visible = true;
+            }
+            
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtOutput.Text = "";
+            pbSuccess.Visible = false;
+            pbFail.Visible = false;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            BLogic bLogic = new BLogic();
+            bool rturn = bLogic.DeleteAll();
+
+            if (rturn)
+            {
+                pbSuccess.Visible = true;
+                pbFail.Visible = false;
+            }
+            else
+            {
+                pbSuccess.Visible = false;
+                pbFail.Visible = true;
+            }
+        }
+
+        private void btnDelWhere_Click(object sender, EventArgs e)
+        {
+            string Delname = txtDelWhere.Text;
+            
+            BLogic bLogic=new BLogic();
+            bool rturn = bLogic.DeleteWhere(Delname);
+
+            if (rturn)
+            {
+                pbSuccess.Visible = true;
+                pbFail.Visible = false;
+            }
+            else
+            {
+                pbSuccess.Visible = false;
+                pbFail.Visible = true;
+            }
+
         }
     }
 }

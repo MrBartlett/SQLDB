@@ -9,6 +9,23 @@ namespace SQLDB
     internal class BLogic
     {
 
+
+        public bool DeleteWhere(string name)
+        {
+            DBConn dBConn = new DBConn();
+            bool rturn = dBConn.DeleteWhere(name);
+            return rturn;
+        }
+
+
+        public bool DeleteAll()
+        {
+            DBConn dbConn = new DBConn();
+            bool rturn = dbConn.DeleteAll();
+
+            return rturn;
+        }
+
         // Select where Business layer m8
         // we might do some hellasick processing here to make the logik go brrrrr
         // #relatable #neverevercommentlikethis #trash
@@ -38,15 +55,15 @@ namespace SQLDB
         }
 
         //Writing to a DB
-        public bool WritetoDBBL(string fname, string Sname, int age)
+        public bool WritetoDBBL(Model User)
         {
             DBConn dBConn = new DBConn();
 
             // converts strings to lower case
-            fname = fname.ToLower();
-            Sname = Sname.ToLower();
+            User.fName = User.fName.ToLower();
+            User.sName = User.sName.ToLower();
 
-            return dBConn.writeToDB(fname, Sname, age);
+            return dBConn.writeToDB(User);
 
         }
 
